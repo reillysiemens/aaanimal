@@ -24,7 +24,7 @@ fn adjective_adjective_animal(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
 
         words.push_str(ANIMALS.choose(&mut rng).unwrap());
 
-        format!("{}", words)
+        words
     }
 
     Ok(())
