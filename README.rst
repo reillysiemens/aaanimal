@@ -1,4 +1,4 @@
-Adjective Adjective Animal
+AAAnimal
 ==========================
 
 Generate mostly unique friendly names.

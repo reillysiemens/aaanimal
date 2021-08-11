@@ -9,20 +9,42 @@ use rand::{rngs::ThreadRng, seq::SliceRandom};
 
 /// TODO Module documentation.
 #[pymodule]
-fn adjective_adjective_animal(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
-    /// TODO Function documentation.
-    #[pyfn(m, "generate")]
-    #[text_signature = "(/, adjectives=2, sep='-')"]
-    fn generate(adjectives: usize, sep: &str) -> String {
+fn aaanimal(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
+    /// TODO Function documentation. Is the text_signature correct?
+    #[pyfn(m)]
+    #[pyo3(
+        name = "generate",
+        text_signature = "(adjectives=2, animals=1, separator='-')"
+    )]
+    fn generate(
+        animals: Option<u128>,
+        adjectives: Option<u128>,
+        separator: Option<&str>,
+    ) -> String {
+        // TODO: Could this be a global so we don't always instantiate it?
         let mut rng = ThreadRng::default();
         let mut words = String::new();
+        let adjectives = adjectives.unwrap_or(2);
+        let animals = animals.unwrap_or(1);
+        let separator = separator.unwrap_or("-");
 
-        for _ in 0..adjectives {
-            words.push_str(ADJECTIVES.choose(&mut rng).unwrap());
-            words.push_str(&sep);
+        for count in 0..adjectives {
+            let adjective = ADJECTIVES
+                .choose(&mut rng)
+                .expect("Adjective array was inexplicably empty.");
+            words.push_str(adjective);
+            words.push_str(&separator);
         }
 
-        words.push_str(ANIMALS.choose(&mut rng).unwrap());
+        for count in 0..animals {
+            let animal = ANIMALS
+                .choose(&mut rng)
+                .expect("Animal array was inexplicably empty.");
+            words.push_str(animal);
+            if count < animals - 1 {
+                words.push_str(&separator);
+            }
+        }
 
         words
     }
