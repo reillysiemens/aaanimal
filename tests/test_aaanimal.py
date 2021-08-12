@@ -1,33 +1,70 @@
 """Tests for the aaanimal module."""
 import pytest
 
-import aaanimal
+from aaanimal import generate
 
 
 def test_generate_empty_string():
     """Generate should return the empty string when given zero adjectives and
     zero animals."""
-    assert aaanimal.generate(adjectives=0, animals=0) == ""
+    assert generate(adjectives=0, animals=0) == ""
 
 
-def test_generate_zero_adjectives(adjectives, animals):
-    """TODO"""
-    animal = {aaanimal.generate(adjectives=0, animals=1, separator="-")}
-    assert animal.isdisjoint(adjectives) and animal.issubset(animals)
+def test_generate_alternative_separator():
+    """Generate should be capable of using an alternative separator."""
+    separator = "•"
+    result = generate(adjectives=2, animals=1, separator=separator)
+    assert len(result.split(separator)) == 3
 
 
-def test_generate_zero_animals(adjectives, animals):
-    """TODO"""
-    adjective = {aaanimal.generate(adjectives=1, animals=0, separator="-")}
-    assert adjective.isdisjoint(animals) and adjective.issubset(adjectives)
+@pytest.mark.parametrize(
+    "num_animals",
+    (
+        pytest.param(1, id="one animal"),
+        pytest.param(2, id="two animals"),
+    ),
+)
+def test_generate_zero_adjectives(num_animals, adjectives, animals):
+    """Generate should not include extraneous separators in the output when
+    there are zero adjectives."""
+    separator = "-"
+    result = set(
+        generate(
+            adjectives=0,
+            animals=num_animals,
+            separator=separator,
+        ).split(separator)
+    )
+    assert result.isdisjoint(adjectives) and result.issubset(animals)
+
+
+@pytest.mark.parametrize(
+    "num_adjectives",
+    (
+        pytest.param(1, id="one adjective"),
+        pytest.param(2, id="two adjectives"),
+    ),
+)
+def test_generate_zero_animals(num_adjectives, adjectives, animals):
+    """Generate should not include extraneous separators in the output when
+    there are zero animals."""
+    separator = "-"
+    result = set(
+        generate(
+            adjectives=num_adjectives,
+            animals=0,
+            separator=separator,
+        ).split(separator)
+    )
+    assert result.isdisjoint(animals) and result.issubset(adjectives)
 
 
 def test_generate_uses_expected_adjectives_and_animals(adjectives, animals):
-    """Generate uses adjectives and animals from the expected set of adjectives
-    and animals."""
+    """Generate should use adjectives and animals from the expected set of
+    adjectives and animals."""
     separator = "-"
 
-    result = aaanimal.generate(adjectives=2, animals=1, separator=separator)
+    result = generate(adjectives=2, animals=1, separator=separator)
     adjective1, adjective2, animal = result.split(separator)
 
     assert {adjective1, adjective2}.issubset(adjectives)
@@ -43,9 +80,10 @@ def test_generate_uses_expected_adjectives_and_animals(adjectives, animals):
     ),
 )
 def test_generate_raises_type_errors(kwargs):
-    """Generate raises a TypeError when give arguments with an invalid type."""
+    """Generate should raise a TypeError when give arguments with an invalid
+    type."""
     with pytest.raises(TypeError):
-        aaanimal.generate(**kwargs)
+        generate(**kwargs)
 
 
 @pytest.mark.parametrize(
@@ -56,10 +94,10 @@ def test_generate_raises_type_errors(kwargs):
     ),
 )
 def test_generate_disallows_underflow(kwargs):
-    """Generate raises an OverflowError indicating that a negative integer
-    can't be used where an unsigned integer is expected."""
+    """Generate should raise an OverflowError indicating that a negative
+    integer can't be used where an unsigned integer is expected."""
     with pytest.raises(OverflowError, match="can't convert negative int to unsigned"):
-        aaanimal.generate(**kwargs)
+        generate(**kwargs)
 
 
 @pytest.mark.parametrize(
@@ -70,7 +108,7 @@ def test_generate_disallows_underflow(kwargs):
     ),
 )
 def test_generate_disallows_overflow(kwargs):
-    """Generate raises an OverflowError indicating that a Python integer is too
-    big to be converted into a Rust integer without overflowing."""
+    """Generate should raise an OverflowError indicating that a Python integer
+    is too big to be converted into a Rust integer without overflowing."""
     with pytest.raises(OverflowError, match="int too big to convert"):
-        aaanimal.generate(**kwargs)
+        generate(**kwargs)
