@@ -7,13 +7,22 @@ use animals::ANIMALS;
 use pyo3::prelude::*;
 use rand::{rngs::ThreadRng, seq::SliceRandom};
 
-/// TODO Module documentation.
+/// Generate mostly unique, friendly names.
 #[pymodule]
 fn aaanimal(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
-    /// TODO Function documentation. Is the text_signature correct?
+    /// Generate mostly unique, friendly names.
+    ///
+    /// Args:
+    ///     adjectives (int): The number of adjectives.
+    ///     animals (int): The number of animals.
+    ///     separator (str): The word separator.
+    ///
+    /// Returns:
+    ///     str: The generated name.
     #[pyfn(m)]
     #[pyo3(
         name = "generate",
+        // XXX: 2021-08-11 - Is this text signature correct?
         text_signature = "(adjectives=2, animals=1, separator='-')"
     )]
     fn generate(
@@ -21,7 +30,8 @@ fn aaanimal(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
         adjectives: Option<u128>,
         separator: Option<&str>,
     ) -> String {
-        // TODO: Could this be a global so we don't always instantiate it?
+        // XXX: 2021-08-11 - Is there a way to avoid instantiating this on
+        // every call? Is that even a good idea?
         let mut rng = ThreadRng::default();
         let mut words = String::new();
         let adjectives = adjectives.unwrap_or(2);

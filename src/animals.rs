@@ -1,3 +1,5 @@
+// An alphabetical listing of animals. The animals are normalized to be
+// lowercase and contain no separators.
 pub const ANIMALS: [&str; 1750] = [
     "aardvark",
     "aardwolf",

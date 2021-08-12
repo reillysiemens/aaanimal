@@ -1,3 +1,5 @@
+// An alphabetical listing of adjectives. The adjectives are normalized to be
+// lowercase and contain no separators.
 pub const ADJECTIVES: [&str; 8980] = [
     "abaft",
     "abandoned",
