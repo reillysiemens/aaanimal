@@ -21,9 +21,10 @@ requires = tox-pyo3
 [testenv]
 pyo3 = True
 deps =
-    pytest
+    pytest ~= 6.2.0
+    pytest-randomly ~= 3.8.0
 commands =
-    pytest -v
+    pytest -v {posargs}
 skip_install = True
 
 [testenv:rust]
