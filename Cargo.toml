@@ -4,8 +4,6 @@ version = "0.1.0"
 authors = ["Reilly Tucker Siemens <reilly@tuckersiemens.com>"]
 edition = "2018"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
 pyo3 = { version = "0.14.2", features = ["extension-module", "abi3-py38"] }
 rand = "0.8.4"

@@ -1,3 +1,28 @@
+[project]
+name = "aaanimal"
+classifier = []
+maintainer = "Reilly Tucker Siemens"
+maintainer-email = "reilly@tuckersiemens.com"
+requires-python = ">=3.8"
+
 [build-system]
-requires = ["maturin"]
+requires = ["maturin>=0.11,<0.12"]
 build-backend = "maturin"
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist =
+    python3.8
+    python3.9
+    python3.10
+requires = tox-pyo3
+
+[testenv]
+pyo3 = True
+deps =
+    pytest
+commands =
+    pytest -v
+skip_install = True
+"""
