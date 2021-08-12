@@ -14,7 +14,7 @@ use rand::{rngs::ThreadRng, seq::SliceRandom};
 #[pymodule]
 fn aaanimal(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
     // Add the current cargo package version to the Python module.
-    m.add("__version__", env!("CARGO_PKG_VERSION"));
+    m.add("__version__", env!("CARGO_PKG_VERSION"))?;
 
     /// Generate mostly unique, friendly names.
     ///
