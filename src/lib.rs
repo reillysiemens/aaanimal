@@ -50,12 +50,12 @@ fn aaanimal(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
                 .expect("Adjective array was inexplicably empty.");
             words.push_str(adjective);
             if count < adjectives - 1 {
-                words.push_str(&separator);
+                words.push_str(separator);
             }
         }
 
         if adjectives != 0 && animals != 0 {
-            words.push_str(&separator);
+            words.push_str(separator);
         }
 
         for count in 0..animals {
@@ -64,7 +64,7 @@ fn aaanimal(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
                 .expect("Animal array was inexplicably empty.");
             words.push_str(animal);
             if count < animals - 1 {
-                words.push_str(&separator);
+                words.push_str(separator);
             }
         }
 
