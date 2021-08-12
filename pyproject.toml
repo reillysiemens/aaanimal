@@ -25,4 +25,13 @@ deps =
 commands =
     pytest -v
 skip_install = True
+
+[testenv:rust]
+allowlist_externals =
+    cargo
+commands =
+    cargo fmt --all -- --check
+    cargo clippy -- -D warnings
+    # If any Rust tests are written they can be run here with
+    # cargo test
 """
