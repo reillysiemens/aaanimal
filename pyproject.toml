@@ -24,7 +24,7 @@ deps =
     pytest ~= 6.2.0
     pytest-randomly ~= 3.8.0
 commands =
-    pytest -v {posargs}
+    pytest {posargs}
 skip_install = True
 
 [testenv:rust]
