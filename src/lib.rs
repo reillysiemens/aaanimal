@@ -7,7 +7,7 @@ use animals::ANIMALS;
 use pyo3::prelude::*;
 use rand::{rngs::ThreadRng, seq::SliceRandom};
 
-/// Generate mostly unique, friendly names.
+/// Generate friendly, mostly unique names.
 ///
 /// Attributes:
 ///     __version__ (str): The package version.
@@ -16,7 +16,7 @@ fn aaanimal(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
     // Add the current cargo package version to the Python module.
     m.add("__version__", env!("CARGO_PKG_VERSION"))?;
 
-    /// Generate mostly unique, friendly names.
+    /// Generate friendly, mostly unique names.
     ///
     /// Args:
     ///     adjectives (int): The number of adjectives.
