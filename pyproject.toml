@@ -39,4 +39,12 @@ commands =
     cargo clippy -- -D warnings
     # If any Rust tests are written they can be run here with
     # cargo test
+
+[testenv:docs]
+basepython = python3
+deps =
+    sphinx ~= 4.1.0
+    furo == 2021.8.11b42
+commands =
+    sphinx-build -b html docs {posargs:docs/_build/html}
 """

@@ -32,7 +32,16 @@ Platform Support
 
 There is currently only support for Linux, but the plan is to support Windows
 (and possibly FreeBSD) as well. If you'd like to help make either a reality,
-please consider contributing.
+please consider :ref:`contributing <contributing>`.
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   api
+   changelog
+   Code of Conduct <code-of-conduct>
+   contributing
 
 .. _GfyCat: https://gfycat.com/about
 .. _Rust: https://www.rust-lang.org/
