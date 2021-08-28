@@ -2,8 +2,8 @@ Aaanimal
 ========
 
 Aaanimal is a Python extension module for generating friendly, mostly unique
-names. The name is a play on GfyCat's `AdjectiveAdjectiveAnimal URL
-nomenclature <GfyCat>`_. It is written in `Rust`_ using `PyO3`_.
+names. The name is a play on GfyCat's `AdjectiveAdjectiveAnimal URLs <GfyCat>`_.
+It is written in `Rust`_ using `PyO3`_.
 
 Usage
 ------
