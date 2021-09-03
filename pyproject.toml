@@ -41,7 +41,7 @@ commands =
     # cargo test
 
 [testenv:docs]
-basepython = python3
+basepython = python3.8
 deps =
     sphinx ~= 4.1.0
     furo == 2021.8.11b42

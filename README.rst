@@ -2,8 +2,8 @@ Aaanimal
 ========
 
 Aaanimal is a Python extension module for generating friendly, mostly unique
-names. The name is a play on GfyCat's `AdjectiveAdjectiveAnimal URLs <GfyCat>`_.
-It is written in `Rust`_ using `PyO3`_.
+names. The name is a play on GfyCat's `AdjectiveAdjectiveAnimal URLs`_. It is
+written in `Rust`_ using `PyO3`_.
 
 Usage
 ------
@@ -14,7 +14,7 @@ Aaanimal only has one function. Use it wisely.
 
    import aaanimal
    aaanimal.generate()  # 'crushable-badtempered-raptors'
-   aaanimal.generate(adjectives=1, animals=1, separator="•")  # 'nautical•aphid'
+   aaanimal.generate(adjectives=1, animals=1, separator=" ✨ ")  # 'nautical ✨ aphid'
 
 Installation
 ------------
@@ -34,7 +34,7 @@ There is currently only support for Linux, but the plan is to support Windows
 (and possibly FreeBSD) as well. If you'd like to help make either a reality,
 please consider contributing.
 
-.. _GfyCat: https://gfycat.com/about
+.. _AdjectiveAdjectiveAnimal URLs: https://gfycat.com/about
 .. _Rust: https://www.rust-lang.org/
 .. _PyO3: https://pyo3.rs/
 .. _PyPI: https://pypi.org/
