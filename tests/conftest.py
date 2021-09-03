@@ -1,4 +1,9 @@
-import pytest
+"""Common test fixtures."""
+# XXX: 2021-09-03 - Set can be removed when Python 3.8 support is dropped as
+# the builtins support generic typing from 3.9 onward.
+from typing import Set
+
+import pytest  # type: ignore
 
 # XXX: 2021-08-11 - These fixtures would be better if they used the exact same
 # adjectives and animals as the Rust code. That could either be done through
@@ -7,7 +12,7 @@ import pytest
 
 
 @pytest.fixture(scope="session")
-def adjectives():
+def adjectives() -> Set[str]:
     """A set of adjectives which matches the Rust definitions."""
     return {
         "abaft",
@@ -8994,7 +8999,7 @@ def adjectives():
 
 
 @pytest.fixture(scope="session")
-def animals():
+def animals() -> Set[str]:
     """A set of animals which matches the Rust definitions."""
     return {
         "aardvark",
