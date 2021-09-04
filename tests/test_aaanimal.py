@@ -45,14 +45,12 @@ def test_generate_zero_adjectives(
     """Generate should not include extraneous separators in the output when
     there are zero adjectives."""
     separator = "-"
-    result = set(
-        generate(
-            adjectives=0,
-            animals=num_animals,
-            separator=separator,
-        ).split(separator),
-    )
-    assert result.isdisjoint(adjectives) and result.issubset(animals)
+    result = generate(adjectives=0, animals=num_animals, separator=separator)
+    words = result.split(separator)
+    unique = set(words)
+
+    assert len(words) == num_animals
+    assert unique.issubset(animals), f"Unexpected animals: {unique}"
 
 
 @pytest.mark.parametrize(
@@ -70,14 +68,12 @@ def test_generate_zero_animals(
     """Generate should not include extraneous separators in the output when
     there are zero animals."""
     separator = "-"
-    result = set(
-        generate(
-            adjectives=num_adjectives,
-            animals=0,
-            separator=separator,
-        ).split(separator),
-    )
-    assert result.isdisjoint(animals) and result.issubset(adjectives)
+    result = generate(adjectives=num_adjectives, animals=0, separator=separator)
+    words = result.split(separator)
+    unique = set(words)
+
+    assert len(words) == num_adjectives
+    assert unique.issubset(adjectives), f"Unexpected adjectives: {unique}"
 
 
 def test_generate_uses_expected_adjectives_and_animals(
