@@ -1,0 +1,40 @@
+name: Test
+on: [push, pull_request]
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10.0-rc.1
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - name: Install tox
+        run: pip install tox
+      - name: Run Rust tests
+        run: tox -e rust
+      - name: Build wheels
+        uses: messense/maturin-action@v1
+        with:
+          maturin-version: latest
+          target: x86_64
+          manylinux: auto
+          command: build
+          args: --release --out dist --no-sdist
+      - name: Run Python tests
+        run: tox -e python3.8,python3.9,python3.10,static,docs
