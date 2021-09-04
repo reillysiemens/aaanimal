@@ -1,6 +1,6 @@
 // An alphabetical listing of adjectives. The adjectives are normalized to be
 // lowercase and contain no separators.
-pub const ADJECTIVES: [&str; 8980] = [
+pub const ADJECTIVES: [&str; 8981] = [
     "abaft",
     "abandoned",
     "abased",
@@ -6506,6 +6506,7 @@ pub const ADJECTIVES: [&str; 8980] = [
     "respected",
     "respectful",
     "respirable",
+    "resplendent",
     "responsive",
     "restful",
     "resting",
