@@ -1,6 +1,6 @@
 // An alphabetical listing of animals. The animals are normalized to be
 // lowercase and contain no separators.
-pub const ANIMALS: [&str; 1750] = [
+pub const ANIMALS: [&str; 1749] = [
     "aardvark",
     "aardwolf",
     "abalone",
@@ -1040,7 +1040,6 @@ pub const ANIMALS: [&str; 1750] = [
     "lunamoth",
     "lungfish",
     "lynx",
-    "lynx ",
     "macaque",
     "macaw",
     "macropod",
